@@ -1,0 +1,20 @@
+<section class="todoapp">
+    <header class="header">
+        <h1>{{title}}</h1>
+        <input class="new-todo" #todoInput (keyup.enter)="add(todoInput.value);todoInput.value='';"
+            [placeholder]="placeholder" autofocus>
+    </header>
+    <section class="main" style="display: block;">
+        <input id="toggle-all" class="toggle-all" type="checkbox" [checked]="toggleAllBtn" (click)="toggleAll()">
+        <label for="toggle-all">Mark all as complete</label>
+        <ul class="todo-list">
+            <li *ngFor="let item of todoDataList; let i=index" [class]="{completed:item.Status,smallText:item.Status}">
+                <div class="view">
+                    <input (click)="clickCheck(item)" class="toggle" type="checkbox" [checked]="item.Status">
+                    <label>{{item.Thing}}</label>
+                    <button (click)="delete(i)" class="destroy"> </button>
+                </div>
+            </li>
+        </ul>
+    </section>
+</section>
