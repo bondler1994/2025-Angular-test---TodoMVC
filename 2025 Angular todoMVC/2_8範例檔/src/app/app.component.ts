@@ -40,10 +40,15 @@ export class AppComponent {
 
   clickCheck(item: Todo) {
     item.Status = !item.Status;
+    if (this.todoComplete.length === this.todoDataList.length) {
+      this.toggleAllBtn = true;
+    } else {
+      this.toggleAllBtn = false;
+    }
   }
 
-  delete(index: number) {
-    this.todoDataList.splice(index, 1);
+  delete(todo: Todo) {
+    this.todoDataList = this.todoDataList.filter((data) => data !== todo);
   }
 
   add(value: string) {
@@ -62,5 +67,36 @@ export class AppComponent {
   updateItem(item: Todo, value: string) {
     item.Thing = value;
     item.Editing = false;
+  }
+
+  setTodoStatusType(type: number) {
+    this.nowTodoStatusType = type;
+  }
+
+  get nowTodoList() {
+    let list: Todo[] = [];
+    switch (this.nowTodoStatusType) {
+      case TodoStatusType.Active:
+        list = this.todoActive;
+        break;
+      case TodoStatusType.Completed:
+        list = this.todoComplete;
+        break;
+      default:
+        list = this.todoDataList;
+        break;
+    }
+    return list;
+  }
+
+  get todoActive(): Todo[] {
+    return this.todoDataList.filter((data) => !data.Status);
+  }
+  get todoComplete(): Todo[] {
+    return this.todoDataList.filter((data) => data.Status);
+  }
+
+  clearCompleted() {
+    this.todoDataList = this.todoActive;
   }
 }
