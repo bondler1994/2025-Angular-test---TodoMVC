@@ -1,8 +1,7 @@
 <section class="todoapp">
     <header class="header">
         <h1>{{title}}</h1>
-        <input class="new-todo" #todoInput (keyup.enter)="add(todoInput.value);todoInput.value='';"
-            [placeholder]="placeholder" autofocus>
+        <input class="new-todo" #todoInput (keyup.enter)="add(todoInput.value);todoInput.value='';" [placeholder]="placeholder" autofocus>
     </header>
     <section class="main" style="display: block;">
         <input id="toggle-all" class="toggle-all" type="checkbox" [checked]="toggleAllBtn" (click)="toggleAll()">
@@ -14,9 +13,19 @@
                     <label (dblclick)="edit(item)">{{item.Thing}}</label>
                     <button (click)="delete(i)" class="destroy"> </button>
                 </div>
-                <input #saveIn *ngIf="item.Editing" [value]="item.Thing" (keyup.enter)="updateItem(item,saveIn.value)"
-                    (blur)="updateItem(item,saveIn.value)" (mouseenter)="saveIn.focus()" class="edit">
+                <input #saveIn *ngIf="item.Editing" [value]="item.Thing" (keyup.enter)="updateItem(item,saveIn.value)" (blur)="updateItem(item,saveIn.value)" (mouseenter)="saveIn.focus()" class="edit">
             </li>
         </ul>
     </section>
+    <footer class="footer">
+        <span class="todo-count">
+            <strong>3</strong>
+            <span> items left</span>
+        </span>
+        <ul class="filters">
+            <li><a [class.selected]="nowTodoStatusType===todoStatusType.All" href="#/"> All </a></li>
+            <li><a [class.selected]="nowTodoStatusType===todoStatusType.Active" href="#/active"> Active </a></li>
+            <li><a [class.selected]="nowTodoStatusType===todoStatusType.Completed" href="#/completed"> Completed </a></li>
+        </ul><button class="clear-completed">Clear completed</button>
+    </footer>
 </section>

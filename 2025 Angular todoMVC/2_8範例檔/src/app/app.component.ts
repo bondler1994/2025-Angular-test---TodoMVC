@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Todo } from './@module/todo-items';
+import { Todo, TodoStatusType } from './@module/todo-items';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,9 @@ import { Todo } from './@module/todo-items';
 export class AppComponent {
   title = 'OneTodo';
   placeholder = 'What needs to be done????';
-
   toggleAllBtn = false;
-  check1 = false;
-  check2 = false;
+  nowTodoStatusType = TodoStatusType.All;
+  todoStatusType = TodoStatusType;
 
   todoDataList: Todo[] = [
     {

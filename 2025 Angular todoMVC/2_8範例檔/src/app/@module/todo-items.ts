@@ -17,3 +17,11 @@ export class TodoClass {
     this.Status = !this.Status;
   }
 }
+
+// Enum for Todo status types
+// This enum can be used to filter todos based on their status
+export enum TodoStatusType {
+  All,
+  Active,
+  Completed,
+}
