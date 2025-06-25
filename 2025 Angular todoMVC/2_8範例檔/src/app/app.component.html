@@ -8,12 +8,14 @@
         <input id="toggle-all" class="toggle-all" type="checkbox" [checked]="toggleAllBtn" (click)="toggleAll()">
         <label for="toggle-all">Mark all as complete</label>
         <ul class="todo-list">
-            <li *ngFor="let item of todoDataList; let i=index" [class]="{completed:item.Status,smallText:item.Status}">
+            <li *ngFor="let item of todoDataList; let i=index" [class]="{completed:item.Status,editing:item.Editing}">
                 <div class="view">
                     <input (click)="clickCheck(item)" class="toggle" type="checkbox" [checked]="item.Status">
-                    <label>{{item.Thing}}</label>
+                    <label (dblclick)="edit(item)">{{item.Thing}}</label>
                     <button (click)="delete(i)" class="destroy"> </button>
                 </div>
+                <input #saveIn *ngIf="item.Editing" [value]="item.Thing" (keyup.enter)="updateItem(item,saveIn.value)"
+                    (blur)="updateItem(item,saveIn.value)" (mouseenter)="saveIn.focus()" class="edit">
             </li>
         </ul>
     </section>

@@ -1,6 +1,7 @@
 export interface Todo {
   Status: boolean;
   Thing: string;
+  Editing: boolean;
 }
 
 export class TodoClass {
