@@ -37,10 +37,9 @@
         <input
           #saveIn
           *ngIf="item.Editing"
-          [value]="item.Thing"
           [(ngModel)]="item.Thing"
-          (keyup.enter)="updateItem(item, saveIn.value)"
-          (blur)="updateItem(item, saveIn.value)"
+          (keyup.enter)="item.Editing = false"
+          (blur)="item.Editing = false"
           (mouseenter)="saveIn.focus()"
           class="edit"
         />
