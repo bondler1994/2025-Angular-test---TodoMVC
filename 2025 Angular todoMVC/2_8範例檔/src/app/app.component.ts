@@ -67,10 +67,10 @@ export class AppComponent {
     item.Editing = true;
   }
 
-  updateItem(item: Todo, value: string) {
-    item.Thing = value;
-    item.Editing = false;
-  }
+  // updateItem(item: Todo, value: string) {
+  //   item.Thing = value;
+  //   item.Editing = false;
+  // }
 
   setTodoStatusType(type: number) {
     this.nowTodoStatusType = type;
