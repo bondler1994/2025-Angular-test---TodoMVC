@@ -13,6 +13,8 @@ export class AppComponent {
   nowTodoStatusType = TodoStatusType.All;
   todoStatusType = TodoStatusType;
 
+  todoInputModule = '';
+
   todoDataList: Todo[] = [
     {
       Status: true,
@@ -54,10 +56,11 @@ export class AppComponent {
   add(value: string) {
     const todo: Todo = {
       Status: false,
-      Thing: value,
+      Thing: this.todoInputModule,
       Editing: false,
     };
     this.todoDataList.push(todo);
+    this.todoInputModule = '';
   }
 
   edit(item: Todo) {
