@@ -1,6 +1,7 @@
 {
   "/api": {
-    "target": "https://todo.talllkai.com/api/todo2_16",
-    "secure": false
+    "target": "https://todo.talllkai.com",
+    "secure": false,
+    "changeOrigin": true
   }
 }
