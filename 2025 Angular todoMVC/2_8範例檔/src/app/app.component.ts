@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Todo, TodoStatusType } from './@module/todo-items';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'OneTodo';
   placeholder = 'What needs to be done????';
   toggleAllBtn = false;
@@ -15,23 +16,17 @@ export class AppComponent {
 
   todoInputModule = '';
 
-  todoDataList: Todo[] = [
-    {
-      Status: true,
-      Thing: '第一件事情',
-      Editing: false,
-    },
-    {
-      Status: false,
-      Thing: '第二件事情',
-      Editing: false,
-    },
-    {
-      Status: false,
-      Thing: '第三件事情',
-      Editing: false,
-    },
-  ];
+  todoDataList: Todo[] = [];
+
+  constructor(private http: HttpClient) {}
+
+  // 使用 inject() 函數來注入 HttpClient
+  // private http = inject(HttpClient); qqqqqqqqqqq
+  ngOnInit(): void {
+    this.http.get<Todo[]>('/api/todo2_16').subscribe((data: any) => {
+      this.todoDataList = data;
+    });
+  }
 
   toggleAll() {
     this.toggleAllBtn = !this.toggleAllBtn;
