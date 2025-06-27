@@ -23,11 +23,9 @@ export class AppComponent implements OnInit {
   // 使用 inject() 函數來注入 HttpClient
   // private http = inject(HttpClient); qqqqqqqqqqq
   ngOnInit(): void {
-    this.http
-      .get<Todo[]>('https://todo.talllkai.com/api/todo2_16')
-      .subscribe((data: any) => {
-        this.todoDataList = data;
-      });
+    this.http.get<Todo[]>('/api/todo2_16').subscribe((data: any) => {
+      this.todoDataList = data;
+    });
   }
 
   toggleAll() {
