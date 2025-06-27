@@ -53,8 +53,12 @@ export class AppComponent implements OnInit {
       Status: false,
       Thing: this.todoInputModule,
       Editing: false,
+      TodoId: '',
     };
-    this.todoDataList.push(todo);
+    this.http.post<Todo>('api/todo2_16', todo).subscribe((data) => {
+      this.todoDataList.push(data);
+      console.log('llod', this.todoDataList);
+    });
     this.todoInputModule = '';
   }
 
@@ -62,10 +66,10 @@ export class AppComponent implements OnInit {
     item.Editing = true;
   }
 
-  // updateItem(item: Todo, value: string) {
-  //   item.Thing = value;
-  //   item.Editing = false;
-  // }
+  updateItem(item: Todo) {
+    item.Editing = false;
+    this.http.put('/api/todo2_16/' + item.TodoId, item).subscribe();
+  }
 
   setTodoStatusType(type: number) {
     this.nowTodoStatusType = type;
