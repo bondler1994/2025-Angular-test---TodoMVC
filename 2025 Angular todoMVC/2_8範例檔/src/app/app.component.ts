@@ -99,6 +99,11 @@ export class AppComponent implements OnInit {
   }
 
   clearCompleted() {
+    const idList = this.todoDataList
+      .filter((data) => data.Status)
+      .map((data) => data.TodoId)
+      .join(',');
+    this.http.delete('api/todo2_16/' + idList).subscribe();
     this.todoDataList = this.todoActive;
   }
 }
