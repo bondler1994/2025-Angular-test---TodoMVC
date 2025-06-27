@@ -54,7 +54,10 @@ export class AppComponent implements OnInit {
       Thing: this.todoInputModule,
       Editing: false,
     };
-    this.todoDataList.push(todo);
+    this.http.post<Todo>('api/todo2_16', todo).subscribe((data) => {
+      this.todoDataList.push(data);
+      console.log('llod', this.todoDataList);
+    });
     this.todoInputModule = '';
   }
 
