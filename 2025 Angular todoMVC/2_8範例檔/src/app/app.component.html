@@ -38,8 +38,8 @@
           #saveIn
           *ngIf="item.Editing"
           [(ngModel)]="item.Thing"
-          (keyup.enter)="item.Editing = false"
-          (blur)="item.Editing = false"
+          (keyup.enter)="updateItem(item)"
+          (blur)="updateItem(item)"
           (mouseenter)="saveIn.focus()"
           class="edit"
         />
