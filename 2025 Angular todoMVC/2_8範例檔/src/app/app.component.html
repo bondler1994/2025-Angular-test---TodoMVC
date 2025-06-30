@@ -1,10 +1,12 @@
 <section class="todoapp">
   <header class="header">
+    <app-a1></app-a1>
+    <app-a2></app-a2>
     <h1>{{ title }}</h1>
     <input
       class="new-todo"
       #todoInput
-      (keyup.enter)="add(todoInputModule)"
+      (keyup.enter)="addtoImmediatelyUpdate()"
       [placeholder]="placeholder"
       autofocus
       [(ngModel)]="todoInputModule"
@@ -38,8 +40,8 @@
           #saveIn
           *ngIf="item.Editing"
           [(ngModel)]="item.Thing"
-          (keyup.enter)="item.Editing = false"
-          (blur)="item.Editing = false"
+          (keyup.enter)="updateItem(item)"
+          (blur)="updateItem(item)"
           (mouseenter)="saveIn.focus()"
           class="edit"
         />
