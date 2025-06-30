@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Todo, TodoClass, TodoStatusType } from './@module/todo-items';
-import { HttpClient } from '@angular/common/http';
+import { TodoApiService } from './@services/todo-api.service';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +18,12 @@ export class AppComponent implements OnInit {
 
   todoDataList: Todo[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private todoApiService: TodoApiService) {}
 
   // 使用 inject() 函數來注入 HttpClient
   // private http = inject(HttpClient); qqqqqqqqqqq
   ngOnInit(): void {
-    this.http.get<Todo[]>('/api/todo2_16').subscribe((data: any) => {
+    this.todoApiService.add().subscribe((data: any) => {
       this.todoDataList = data;
     });
   }
@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
     this.todoDataList.forEach((data: any) => {
       data.Status = this.toggleAllBtn;
     });
+    this.todoApiService.toggleAll(this.toggleAllBtn).subscribe();
   }
 
   clickCheck(item: Todo) {
@@ -44,30 +45,11 @@ export class AppComponent implements OnInit {
     }
   }
 
-  delete(item: Todo) {
-    this.http.delete('/api/todo2_16/' + item.TodoId).subscribe(() => {
-      this.todoDataList = this.todoDataList.filter((data) => data !== item);
-    });
-  }
-
-  add(value: string) {
-    const todo: Todo = {
-      Status: false,
-      Thing: this.todoInputModule,
-      Editing: false,
-      TodoId: '',
-    };
-    this.http.post<Todo>('api/todo2_16', todo).subscribe((data) => {
-      this.todoDataList.push(data);
-      console.log('llod', this.todoDataList);
-    });
-    this.todoInputModule = '';
-  }
   addtoImmediatelyUpdate() {
     const seqno = new Date().getTime();
     const todo: any = new TodoClass(this.todoInputModule, false, seqno);
     this.todoDataList.push(todo);
-    this.http.post<Todo>('api/todo2_16', todo).subscribe((data) => {
+    this.todoApiService.post(todo).subscribe((data) => {
       this.todoDataList.forEach((data2: any) => {
         if (data2.Seqno === seqno) {
           data2.TodoId = data.TodoId;
@@ -78,13 +60,28 @@ export class AppComponent implements OnInit {
     this.todoInputModule = '';
   }
 
-  edit(item: Todo) {
-    item.Editing = true;
+  updateItem(item: Todo) {
+    this.todoApiService.put(item).subscribe();
+    item.Editing = false;
   }
 
-  updateItem(item: Todo) {
-    item.Editing = false;
-    this.http.put('/api/todo2_16/' + item.TodoId, item).subscribe();
+  delete(item: Todo) {
+    this.todoApiService.delete(item).subscribe(() => {
+      this.todoDataList = this.todoDataList.filter((data) => data !== item);
+    });
+  }
+
+  clearCompleted() {
+    const idList = this.todoDataList
+      .filter((data) => data.Status)
+      .map((data) => data.TodoId)
+      .join(',');
+    this.todoApiService.deleteAll().subscribe();
+    this.todoDataList = this.todoActive;
+  }
+
+  edit(item: Todo) {
+    item.Editing = true;
   }
 
   setTodoStatusType(type: number) {
@@ -112,14 +109,5 @@ export class AppComponent implements OnInit {
   }
   get todoComplete(): Todo[] {
     return this.todoDataList.filter((data) => data.Status);
-  }
-
-  clearCompleted() {
-    const idList = this.todoDataList
-      .filter((data) => data.Status)
-      .map((data) => data.TodoId)
-      .join(',');
-    this.http.delete('api/todo2_16/' + idList).subscribe();
-    this.todoDataList = this.todoActive;
   }
 }
