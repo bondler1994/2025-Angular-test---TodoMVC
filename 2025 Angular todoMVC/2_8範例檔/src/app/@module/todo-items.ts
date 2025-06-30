@@ -12,11 +12,16 @@ export class TodoClass {
   Thing: string = '';
   Editing: boolean;
   TodoId: string;
-  constructor(_thing: string, _status: boolean = false) {
+  CanEdit: boolean = false;
+  Seqno: number;
+
+  constructor(_thing: string, _status: boolean = false, _seqno: number = 0) {
     this.Thing = _thing;
     this.Status = _status;
     this.Editing = false;
     this.TodoId = '';
+    this.CanEdit = _status;
+    this.Seqno = _seqno; // 正確賦值
   }
   toggle() {
     this.Status = !this.Status;
