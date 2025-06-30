@@ -4,7 +4,7 @@
     <input
       class="new-todo"
       #todoInput
-      (keyup.enter)="add(todoInputModule)"
+      (keyup.enter)="addtoImmediatelyUpdate()"
       [placeholder]="placeholder"
       autofocus
       [(ngModel)]="todoInputModule"

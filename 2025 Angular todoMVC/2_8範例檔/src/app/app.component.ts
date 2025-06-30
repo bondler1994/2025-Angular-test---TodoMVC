@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Todo, TodoStatusType } from './@module/todo-items';
+import { Todo, TodoClass, TodoStatusType } from './@module/todo-items';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -44,8 +44,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  delete(todo: Todo) {
-    this.todoDataList = this.todoDataList.filter((data) => data !== todo);
+  delete(item: Todo) {
+    this.http.delete('/api/todo2_16/' + item.TodoId).subscribe(() => {
+      this.todoDataList = this.todoDataList.filter((data) => data !== item);
+    });
   }
 
   add(value: string) {
@@ -58,6 +60,20 @@ export class AppComponent implements OnInit {
     this.http.post<Todo>('api/todo2_16', todo).subscribe((data) => {
       this.todoDataList.push(data);
       console.log('llod', this.todoDataList);
+    });
+    this.todoInputModule = '';
+  }
+  addtoImmediatelyUpdate() {
+    const seqno = new Date().getTime();
+    const todo: any = new TodoClass(this.todoInputModule, false, seqno);
+    this.todoDataList.push(todo);
+    this.http.post<Todo>('api/todo2_16', todo).subscribe((data) => {
+      this.todoDataList.forEach((data2: any) => {
+        if (data2.Seqno === seqno) {
+          data2.TodoId = data.TodoId;
+          data2.CanEdit = true;
+        }
+      });
     });
     this.todoInputModule = '';
   }
