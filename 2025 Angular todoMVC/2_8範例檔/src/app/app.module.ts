@@ -9,9 +9,10 @@ import { A2Component } from './a2/a2.component';
 import { TodoComponent } from './todo/todo.component';
 import { HeaderComponent } from './todo/header/header.component';
 import { MainComponent } from './main/main.component';
+import { FooterComponent } from './todo/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, A1Component, A2Component, TodoComponent, HeaderComponent, MainComponent],
+  declarations: [AppComponent, A1Component, A2Component, TodoComponent, HeaderComponent, MainComponent, FooterComponent],
   imports: [FormsModule, BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -26,23 +26,6 @@ export class TodoComponent implements OnInit {
     });
   }
 
-  toggleAll() {
-    this.toggleAllBtn = !this.toggleAllBtn;
-    this.todoDataList.forEach((data: any) => {
-      data.Status = this.toggleAllBtn;
-    });
-    this.todoApiService.toggleAll(this.toggleAllBtn).subscribe();
-  }
-
-  clickCheck(item: Todo) {
-    item.Status = !item.Status;
-    if (this.todoComplete.length === this.todoDataList.length) {
-      this.toggleAllBtn = true;
-    } else {
-      this.toggleAllBtn = false;
-    }
-  }
-
   updateItem(item: Todo) {
     this.todoApiService.put(item).subscribe();
     item.Editing = false;

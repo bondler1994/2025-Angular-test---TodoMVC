@@ -1,43 +1,16 @@
 <section class="todoapp">
+  <!-- header -->
   <header class="header">
     <app-header [title]="title" [todoDataList]="todoDataList"></app-header>
   </header>
+  <!-- main -->
   <section class="main" style="display: block">
-    <input
-      id="toggle-all"
-      class="toggle-all"
-      type="checkbox"
-      [checked]="toggleAllBtn"
-      (click)="toggleAll()"
-    />
-    <label for="toggle-all">Mark all as complete</label>
-    <ul class="todo-list">
-      <li
-        *ngFor="let item of nowTodoList; let i = index"
-        [class]="{ completed: item.Status, editing: item.Editing }"
-      >
-        <div class="view">
-          <input
-            (click)="clickCheck(item)"
-            class="toggle"
-            type="checkbox"
-            [checked]="item.Status"
-          />
-          <label (dblclick)="edit(item)">{{ item.Thing }}</label>
-          <button (click)="delete(item)" class="destroy"></button>
-        </div>
-        <input
-          #saveIn
-          *ngIf="item.Editing"
-          [(ngModel)]="item.Thing"
-          (keyup.enter)="updateItem(item)"
-          (blur)="updateItem(item)"
-          (mouseenter)="saveIn.focus()"
-          class="edit"
-        />
-      </li>
-    </ul>
+    <app-main
+      [toggleAllBtn]="toggleAllBtn"
+      [todoDataList]="todoDataList"
+    ></app-main>
   </section>
+  <!-- footer -->
   <footer class="footer">
     <span class="todo-count">
       <!-- 判斷長度後，顯示還剩下幾筆 -->
