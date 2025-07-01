@@ -1,3 +1,4 @@
+import { TodoApiService } from './@services/todo-api.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { Todo, TodoClass, TodoStatusType } from './@module/todo-items';
 import { TodoService } from './@services/todo.service';
@@ -7,7 +8,7 @@ import { TodoService } from './@services/todo.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'OneTodo';
   placeholder = 'What needs to be done????';
 
@@ -26,7 +27,16 @@ export class AppComponent implements OnInit {
     return this.todoService.todoComplete;
   }
 
+  get toggleAllBtn() {
+    return this.todoService.toggleAllBtn;
+  }
+
+  get nowTodoStatusType() {
+    return this.todoService.nowTodoStatusType;
+  }
+
   constructor(private todoService: TodoService) {}
+
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -53,8 +63,8 @@ export class AppComponent implements OnInit {
     this.todoService.delete(item);
   }
 
-  clearCompleted(item: Todo) {
-    this.todoService.delete(item);
+  clearCompleted() {
+    this.todoService.clearCompleted();
   }
 
   edit(item: Todo) {
