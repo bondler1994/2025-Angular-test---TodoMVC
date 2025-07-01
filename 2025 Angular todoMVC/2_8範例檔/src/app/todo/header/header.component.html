@@ -1,0 +1,11 @@
+<app-a1></app-a1>
+<app-a2></app-a2>
+<h1>{{ title }}</h1>
+<input
+  class="new-todo"
+  #todoInput
+  (keyup.enter)="addtoImmediatelyUpdate()"
+  placeholder="What needs to be done????"
+  autofocus
+  [(ngModel)]="todoInputModule"
+/>
