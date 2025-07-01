@@ -15,11 +15,21 @@ export class AppComponent implements OnInit {
 
   todoInputModule = '';
 
-  constructor(private todoService: TodoService) {}
+  get nowTodoList() {
+    return this.todoService.nowTodoList;
+  }
 
-  // 使用 inject() 函數來注入 HttpClient
-  // private http = inject(HttpClient); qqqqqqqqqqq
-  ngOnInit(): void {}
+  get todoActive(): Todo[] {
+    return this.todoService.todoActive;
+  }
+  get todoComplete(): Todo[] {
+    return this.todoService.todoComplete;
+  }
+
+  constructor(private todoService: TodoService) {}
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   toggleAll() {
     this.todoService.toggleAll();
@@ -43,38 +53,17 @@ export class AppComponent implements OnInit {
     this.todoService.delete(item);
   }
 
-  clearCompleted() {
-    this.todoService.deleteAll();
+  clearCompleted(item: Todo) {
+    this.todoService.delete(item);
   }
 
   edit(item: Todo) {
-    item.Editing = true;
+    if (item.CanEdit) {
+      item.Editing = true;
+    }
   }
 
   setTodoStatusType(type: number) {
-    this.nowTodoStatusType = type;
-  }
-
-  get nowTodoList() {
-    let list: Todo[] = [];
-    switch (this.nowTodoStatusType) {
-      case TodoStatusType.Active:
-        list = this.todoActive;
-        break;
-      case TodoStatusType.Completed:
-        list = this.todoComplete;
-        break;
-      default:
-        list = this.todoDataList;
-        break;
-    }
-    return list;
-  }
-
-  get todoActive(): Todo[] {
-    return this.todoDataList.filter((data) => !data.Status);
-  }
-  get todoComplete(): Todo[] {
-    return this.todoDataList.filter((data) => data.Status);
+    this.todoService.setTodoStatusType(type);
   }
 }
