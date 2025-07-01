@@ -5,7 +5,7 @@ import { ExampleService } from '../@services/example.service';
   selector: 'app-a2',
   templateUrl: './a2.component.html',
   styleUrls: ['./a2.component.scss'],
-  //   providers: [ExampleService], // 提供 ExampleService
+  providers: [ExampleService], // 提供 ExampleService
 })
 export class A2Component implements OnInit {
   get num() {

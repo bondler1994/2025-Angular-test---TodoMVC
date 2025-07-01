@@ -1,4 +1,5 @@
 export interface Todo {
+  CanEdit: boolean;
   Status: boolean;
   Thing: string;
   Editing: boolean;
