@@ -26,6 +26,17 @@ export class TodoComponent implements OnInit {
     });
   }
 
+  delete(item: Todo) {
+    this.todoDataList = this.todoDataList.filter((data) => data !== item);
+  }
+
+  clearCompleted(item: Todo) {
+    this.todoDataList = this.todoDataList.filter(
+      (todo) => !todo.Status || todo !== item,
+    );
+    // 這裡也可以呼叫 API 做同步刪除
+  }
+
   get todoActive(): Todo[] {
     return this.todoDataList.filter((data) => !data.Status);
   }

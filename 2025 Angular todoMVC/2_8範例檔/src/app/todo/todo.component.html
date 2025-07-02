@@ -9,6 +9,7 @@
       [toggleAllBtn]="toggleAllBtn"
       [todoDataList]="todoDataList"
       [nowTodoStatusType]="nowTodoStatusType"
+      (onDeleteItem)="delete($event)"
     ></app-main>
   </section>
   <!-- footer -->
@@ -16,6 +17,7 @@
     <app-footer
       [todoDataList]="todoDataList"
       [nowTodoStatusType]="nowTodoStatusType"
+      (onDeleteAllItem)="clearCompleted($event)"
     ></app-footer>
   </footer>
 </section>

@@ -1,6 +1,7 @@
 import { TodoApiService } from './../../@services/todo-api.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Todo, TodoClass, TodoStatusType } from 'src/app/@module/todo-items';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -16,6 +17,8 @@ export class MainComponent implements OnInit {
 
   @Input()
   nowTodoStatusType!: number;
+
+  @Output() onDeleteItem = new EventEmitter<Todo>();
 
   constructor(private todoApiService: TodoApiService) {}
 
@@ -49,7 +52,7 @@ export class MainComponent implements OnInit {
 
   delete(item: Todo) {
     this.todoApiService.delete(item).subscribe(() => {
-      this.todoDataList = this.todoDataList.filter((data) => data !== item);
+      this.onDeleteItem.emit(item);
     });
   }
 

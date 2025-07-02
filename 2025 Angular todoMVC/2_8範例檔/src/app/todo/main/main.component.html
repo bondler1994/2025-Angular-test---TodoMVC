@@ -19,7 +19,7 @@
         [checked]="item.Status"
       />
       <label (dblclick)="edit(item)">{{ item.Thing }}</label>
-      <button (click)="delete(item)" class="destroy"></button>
+      <button class="destroy" (click)="delete(item)"></button>
     </div>
     <input
       #saveIn

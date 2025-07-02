@@ -1,7 +1,7 @@
 import { TodoApiService } from './../../@services/todo-api.service';
-import { TodoStatusType } from './../../@module/todo-items';
-import { Component, Input, OnInit } from '@angular/core';
-import { Todo } from 'src/app/@module/todo-items';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Todo, TodoStatusType } from 'src/app/@module/todo-items';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -15,17 +15,16 @@ export class FooterComponent implements OnInit {
 
   @Input() todoDataList!: Todo[];
 
+  @Output() onDeleteAllItem = new EventEmitter<Todo>();
+
   constructor(private todoApiService: TodoApiService) {}
 
   ngOnInit(): void {}
 
-  clearCompleted() {
-    const idList = this.todoDataList
-      .filter((data) => data.Status)
-      .map((data) => data.TodoId)
-      .join(',');
-    this.todoApiService.deleteAll().subscribe();
-    this.todoDataList = this.todoActive;
+  clearCompleted(item: Todo) {
+    this.todoApiService.delete(item).subscribe(() => {
+      this.onDeleteAllItem.emit(item);
+    });
   }
 
   setTodoStatusType(type: number) {
