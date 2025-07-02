@@ -10,6 +10,8 @@ import { TodoClass, Todo } from 'src/app/@module/todo-items';
 export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
+
+  @Input()
   todoInputModule!: string;
 
   @Input()

@@ -11,9 +11,8 @@ export class MainComponent implements OnInit {
   @Input()
   toggleAllBtn!: boolean;
 
-  get todoComplete(): Todo[] {
-    return this.todoDataList.filter((item: Todo) => item.Status);
-  }
+  @Input()
+  todoDataList!: Todo[];
 
   constructor(private todoApiService: TodoApiService) {}
 
@@ -34,5 +33,11 @@ export class MainComponent implements OnInit {
     } else {
       this.toggleAllBtn = false;
     }
+  }
+
+  delete(item: Todo) {
+    this.todoApiService.delete(item).subscribe(() => {
+      this.todoDataList = this.todoDataList.filter((data) => data !== item);
+    });
   }
 }

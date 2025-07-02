@@ -1,1 +1,39 @@
-<p>footer works!</p>
+<span class="todo-count">
+  <!-- 判斷長度後，顯示還剩下幾筆 -->
+  <strong>{{ todoActive.length }}</strong>
+  <span> items left</span>
+</span>
+<ul class="filters">
+  <li>
+    <a
+      [class.selected]="nowTodoStatusType === todoStatusType.All"
+      (click)="setTodoStatusType(todoStatusType.All)"
+      href="#/"
+    >
+      All
+    </a>
+  </li>
+  <li>
+    <a
+      [class.selected]="nowTodoStatusType === todoStatusType.Active"
+      (click)="setTodoStatusType(todoStatusType.Active)"
+      href=" #/active"
+      >Active
+    </a>
+  </li>
+  <li>
+    <a
+      [class.selected]="nowTodoStatusType === todoStatusType.Completed"
+      (click)="setTodoStatusType(todoStatusType.Completed)"
+      href=" #/completed"
+      >Completed
+    </a>
+  </li>
+</ul>
+<button
+  (click)="clearCompleted()"
+  class="clear-completed"
+  *ngIf="todoComplete.length"
+>
+  Clear completed
+</button>
