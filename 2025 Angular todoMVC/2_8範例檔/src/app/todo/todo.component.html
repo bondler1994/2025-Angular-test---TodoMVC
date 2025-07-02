@@ -1,0 +1,21 @@
+<section class="todoapp">
+  <!-- header -->
+  <header class="header">
+    <app-header [title]="title" [todoDataList]="todoDataList"></app-header>
+  </header>
+  <!-- main -->
+  <section class="main" style="display: block">
+    <app-main
+      [toggleAllBtn]="toggleAllBtn"
+      [todoDataList]="todoDataList"
+      [nowTodoStatusType]="nowTodoStatusType"
+    ></app-main>
+  </section>
+  <!-- footer -->
+  <footer class="footer">
+    <app-footer
+      [todoDataList]="todoDataList"
+      [nowTodoStatusType]="nowTodoStatusType"
+    ></app-footer>
+  </footer>
+</section>
