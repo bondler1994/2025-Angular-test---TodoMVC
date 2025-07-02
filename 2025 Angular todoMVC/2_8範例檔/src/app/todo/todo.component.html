@@ -8,10 +8,14 @@
     <app-main
       [toggleAllBtn]="toggleAllBtn"
       [todoDataList]="todoDataList"
+      [nowTodoStatusType]="nowTodoStatusType"
     ></app-main>
   </section>
   <!-- footer -->
   <footer class="footer">
-    <app-footer></app-footer>
+    <app-footer
+      [todoDataList]="todoDataList"
+      [nowTodoStatusType]="nowTodoStatusType"
+    ></app-footer>
   </footer>
 </section>

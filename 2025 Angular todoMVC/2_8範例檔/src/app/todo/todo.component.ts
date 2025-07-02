@@ -26,54 +26,7 @@ export class TodoComponent implements OnInit {
     });
   }
 
-  updateItem(item: Todo) {
-    this.todoApiService.put(item).subscribe();
-    item.Editing = false;
-  }
-
-  delete(item: Todo) {
-    this.todoApiService.delete(item).subscribe(() => {
-      this.todoDataList = this.todoDataList.filter((data) => data !== item);
-    });
-  }
-
-  clearCompleted() {
-    const idList = this.todoDataList
-      .filter((data) => data.Status)
-      .map((data) => data.TodoId)
-      .join(',');
-    this.todoApiService.deleteAll().subscribe();
-    this.todoDataList = this.todoActive;
-  }
-
-  edit(item: Todo) {
-    item.Editing = true;
-  }
-
-  setTodoStatusType(type: number) {
-    this.nowTodoStatusType = type;
-  }
-
-  get nowTodoList() {
-    let list: Todo[] = [];
-    switch (this.nowTodoStatusType) {
-      case TodoStatusType.Active:
-        list = this.todoActive;
-        break;
-      case TodoStatusType.Completed:
-        list = this.todoComplete;
-        break;
-      default:
-        list = this.todoDataList;
-        break;
-    }
-    return list;
-  }
-
   get todoActive(): Todo[] {
     return this.todoDataList.filter((data) => !data.Status);
-  }
-  get todoComplete(): Todo[] {
-    return this.todoDataList.filter((data) => data.Status);
   }
 }

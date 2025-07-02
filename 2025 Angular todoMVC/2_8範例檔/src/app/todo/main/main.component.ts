@@ -1,6 +1,6 @@
 import { TodoApiService } from './../../@services/todo-api.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { Todo } from 'src';
+import { Todo, TodoClass, TodoStatusType } from 'src/app/@module/todo-items';
 
 @Component({
   selector: 'app-main',
@@ -13,6 +13,9 @@ export class MainComponent implements OnInit {
 
   @Input()
   todoDataList!: Todo[];
+
+  @Input()
+  nowTodoStatusType!: number;
 
   constructor(private todoApiService: TodoApiService) {}
 
@@ -35,9 +38,42 @@ export class MainComponent implements OnInit {
     }
   }
 
+  edit(item: Todo) {
+    item.Editing = true;
+  }
+
+  updateItem(item: Todo) {
+    this.todoApiService.put(item).subscribe();
+    item.Editing = false;
+  }
+
   delete(item: Todo) {
     this.todoApiService.delete(item).subscribe(() => {
       this.todoDataList = this.todoDataList.filter((data) => data !== item);
     });
+  }
+
+  get nowTodoList() {
+    let list: Todo[] = [];
+    switch (this.nowTodoStatusType) {
+      case TodoStatusType.Active:
+        list = this.todoActive;
+        break;
+      case TodoStatusType.Completed:
+        list = this.todoComplete;
+        break;
+      default:
+        list = this.todoDataList;
+        break;
+    }
+    return list;
+  }
+
+  get todoComplete(): Todo[] {
+    return this.todoDataList.filter((data) => data.Status);
+  }
+
+  get todoActive(): Todo[] {
+    return this.todoDataList.filter((data) => !data.Status);
   }
 }

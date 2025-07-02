@@ -1,6 +1,7 @@
 import { TodoApiService } from './../../@services/todo-api.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { TodoClass, Todo } from 'src/app/@module/todo-items';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +11,6 @@ import { TodoClass, Todo } from 'src/app/@module/todo-items';
 export class HeaderComponent implements OnInit {
   @Input()
   title!: string;
-
-  @Input()
   todoInputModule!: string;
 
   @Input()
