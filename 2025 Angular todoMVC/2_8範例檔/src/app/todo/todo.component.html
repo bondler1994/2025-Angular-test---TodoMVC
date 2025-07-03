@@ -7,9 +7,8 @@
   <section class="main" style="display: block">
     <app-main
       [toggleAllBtn]="toggleAllBtn"
-      [todoDataList]="todoDataList"
+      [(todoDataList)]="todoDataList"
       [nowTodoStatusType]="nowTodoStatusType"
-      (onDeleteItem)="delete($event)"
     ></app-main>
   </section>
   <!-- footer -->

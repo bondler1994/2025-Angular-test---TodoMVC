@@ -18,7 +18,7 @@ export class MainComponent implements OnInit {
   @Input()
   nowTodoStatusType!: number;
 
-  @Output() onDeleteItem = new EventEmitter<Todo>();
+  @Output() todoDataListChange = new EventEmitter<Todo[]>();
 
   constructor(private todoApiService: TodoApiService) {}
 
@@ -52,7 +52,8 @@ export class MainComponent implements OnInit {
 
   delete(item: Todo) {
     this.todoApiService.delete(item).subscribe(() => {
-      this.onDeleteItem.emit(item);
+      this.todoDataList = this.todoDataList.filter((data) => data !== item);
+      this.todoDataListChange.emit(this.todoDataList);
     });
   }
 

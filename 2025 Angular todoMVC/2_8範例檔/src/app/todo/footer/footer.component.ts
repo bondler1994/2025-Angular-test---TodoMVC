@@ -21,9 +21,9 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  clearCompleted(item: Todo) {
-    this.todoApiService.delete(item).subscribe(() => {
-      this.onDeleteAllItem.emit(item);
+  clearCompleted() {
+    this.todoApiService.deleteAll().subscribe(() => {
+      this.onDeleteAllItem.emit();
     });
   }
 
