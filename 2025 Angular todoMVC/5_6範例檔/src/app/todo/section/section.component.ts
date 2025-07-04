@@ -5,9 +5,11 @@ import { TodoService } from 'src/app/@services/todo.service';
 @Component({
   selector: 'app-section',
   templateUrl: './section.component.html',
-  styleUrls: ['./section.component.scss']
+  styleUrls: ['./section.component.scss'],
 })
 export class SectionComponent implements OnInit {
+  nowSelectTodo!: Todo;
+
   get toggleAllBtn() {
     return this.todoService.toggleAllBtn;
   }
@@ -15,11 +17,10 @@ export class SectionComponent implements OnInit {
   get nowTodoList() {
     return this.todoService.nowTodoList;
   }
-  
-  constructor(private todoService: TodoService) { }
 
-  ngOnInit(): void {
-  }
+  constructor(private todoService: TodoService) {}
+
+  ngOnInit(): void {}
 
   toggleAll() {
     this.todoService.toggleAll();
@@ -42,5 +43,4 @@ export class SectionComponent implements OnInit {
   delete(item: Todo) {
     this.todoService.delete(item);
   }
-
 }
