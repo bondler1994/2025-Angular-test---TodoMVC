@@ -17,6 +17,7 @@
         ></button>
       </div>
       <div class="modal-body">
+        <!-- // 使用 *ngIf 來確保 todo 存在時才顯示內容 -->
         <div *ngIf="todo">
           <div>id:{{ todo.TodoId }}</div>
           <div>事情:{{ todo.Thing }}</div>

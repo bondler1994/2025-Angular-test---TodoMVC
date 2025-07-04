@@ -20,11 +20,7 @@
         *ngIf="item.CanEdit"
       />
       <label (dblclick)="edit(item)">{{ item.Thing }}</label>
-      <button
-        (click)="modal.show(); nowSelectTodo = item"
-        *ngIf="item.CanEdit"
-        class="destroy2"
-      >
+      <button (click)="modalShow(item)" *ngIf="item.CanEdit" class="destroy2">
         i
       </button>
       <button

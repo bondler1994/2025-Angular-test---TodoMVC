@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { TodoInfoModalComponent } from './todo-info-modal/todo-info-modal.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Todo } from 'src/app/@models/todo.model';
 import { TodoService } from 'src/app/@services/todo.service';
 
@@ -9,6 +10,8 @@ import { TodoService } from 'src/app/@services/todo.service';
 })
 export class SectionComponent implements OnInit {
   nowSelectTodo!: Todo;
+  @ViewChild(TodoInfoModalComponent)
+  private todoInfoModalComponent!: TodoInfoModalComponent;
 
   get toggleAllBtn() {
     return this.todoService.toggleAllBtn;
@@ -42,5 +45,10 @@ export class SectionComponent implements OnInit {
 
   delete(item: Todo) {
     this.todoService.delete(item);
+  }
+
+  modalShow(item: Todo) {
+    this.nowSelectTodo = item;
+    this.todoInfoModalComponent.show();
   }
 }
