@@ -10,6 +10,9 @@ import { FooterComponent } from './todo/footer/footer.component';
 import { TodoInfoModalComponent } from './todo/section/todo-info-model/todo-info-modal.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { Header2Component } from './shared/header2/header2.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +23,12 @@ import { Header2Component } from './shared/header2/header2.component';
     FooterComponent,
     TodoInfoModalComponent,
     MenuComponent,
-    Header2Component
+    Header2Component,
+    HomeComponent,
+    NotfoundComponent,
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,//引入這個
-  ],
+  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
