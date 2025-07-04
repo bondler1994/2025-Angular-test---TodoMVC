@@ -19,7 +19,14 @@
         [checked]="item.Status"
       />
       <label (dblclick)="edit(item)">{{ item.Thing }}</label>
-      <button class="destroy" (click)="delete(item)"></button>
+      <button (click)="modal.show()" *ngIf="item.CanEdit" class="p-2 destroy2">
+        i
+      </button>
+      <button
+        class="destroy"
+        *ngIf="item.CanEdit"
+        (click)="delete(item)"
+      ></button>
     </div>
     <input
       #saveIn
@@ -32,3 +39,4 @@
     />
   </li>
 </ul>
+<app-todo-info-model #modal></app-todo-info-model>
