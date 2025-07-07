@@ -3,39 +3,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TodoComponent } from './todo/todo.component';
-import { HeaderComponent } from './todo/header/header.component';
-import { SectionComponent } from './todo/section/section.component';
-import { FooterComponent } from './todo/footer/footer.component';
-import { TodoInfoModalComponent } from './todo/section/todo-info-model/todo-info-modal.component';
-import { MenuComponent } from './shared/menu/menu.component';
-import { Header2Component } from './shared/header2/header2.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './manage/home/home.component';
 import { LoginComponent } from './login/login.component';
-import { ManageComponent } from './manage/manage.component';
 import { LoginModule } from './login/login.module';
+import { ManageModule } from './manage/manage.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TodoComponent,
-    HeaderComponent,
-    SectionComponent,
-    FooterComponent,
-    TodoInfoModalComponent,
-    MenuComponent,
-    Header2Component,
-    HomeComponent,
-    LoginComponent,
-    ManageComponent,
-  ],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
     LoginModule,
+    ManageModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

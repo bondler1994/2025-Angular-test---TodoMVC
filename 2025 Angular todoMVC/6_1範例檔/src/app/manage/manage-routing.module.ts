@@ -6,11 +6,16 @@ import { TodoComponent } from '../todo/todo.component';
 
 const routes: Routes = [
   {
-    path: 'manage',
+    path: '',
     component: ManageComponent,
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'todo', component: TodoComponent },
+      {
+        path: 'account',
+        loadChildren: () =>
+          import('./account/account.module').then((m) => m.AccountModule),
+      },
       { path: '', redirectTo: 'home', pathMatch: 'full' },
     ],
   },
