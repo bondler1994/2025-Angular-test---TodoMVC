@@ -12,7 +12,8 @@ import { MenuComponent } from './shared/menu/menu.component';
 import { Header2Component } from './shared/header2/header2.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-import { NotfoundComponent } from './notfound/notfound.component';
+import { LoginComponent } from './login/login.component';
+import { ManageComponent } from './manage/manage.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NotfoundComponent } from './notfound/notfound.component';
     MenuComponent,
     Header2Component,
     HomeComponent,
-    NotfoundComponent,
+    LoginComponent,
+    ManageComponent,
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [],
