@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'todo', component: TodoComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: notFoundComponent },
 ];
 
 @NgModule({
