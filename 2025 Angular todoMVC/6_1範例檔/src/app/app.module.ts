@@ -11,7 +11,7 @@ import { TodoInfoModalComponent } from './todo/section/todo-info-model/todo-info
 import { MenuComponent } from './shared/menu/menu.component';
 import { Header2Component } from './shared/header2/header2.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './manage/home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ManageComponent } from './manage/manage.component';
 
