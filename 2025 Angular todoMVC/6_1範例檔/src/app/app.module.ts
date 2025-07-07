@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './manage/home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ManageComponent } from './manage/manage.component';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,13 @@ import { ManageComponent } from './manage/manage.component';
     LoginComponent,
     ManageComponent,
   ],
-  imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    LoginModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

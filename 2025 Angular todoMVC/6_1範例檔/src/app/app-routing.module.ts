@@ -6,15 +6,15 @@ import { LoginComponent } from './login/login.component';
 import { ManageComponent } from './manage/manage.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
+  },
   {
     path: 'manage',
-    component: ManageComponent,
-    children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'todo', component: TodoComponent },
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-    ],
+    loadChildren: () =>
+      import('./manage/manage.module').then((m) => m.ManageModule),
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: LoginComponent },
