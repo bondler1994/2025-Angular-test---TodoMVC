@@ -5,11 +5,13 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'manage',
-    loadChildren: () => import('./manage/manage.module').then(m => m.ManageModule)
+    loadChildren: () =>
+      import('./manage/manage.module').then((m) => m.ManageModule),
   },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent },
@@ -17,6 +19,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

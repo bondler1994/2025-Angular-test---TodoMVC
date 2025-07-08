@@ -16,9 +16,9 @@ export class TodoContentComponent implements OnInit {
 
   ngOnInit() {
     this.todoService.todoDataList = [];
-    this.route.paramMap.subscribe((data) => {
-      this.todoService.gid = data.get('id') as string;
-      this.todoService.getData();
+    this.route.data.subscribe((data) => {
+      this.todoService.todoDataList = data['todoList'];
+      this.todoService.ready();
     });
   }
 }
