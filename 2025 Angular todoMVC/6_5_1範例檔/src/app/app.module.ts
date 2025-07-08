@@ -5,19 +5,18 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { ProcessBarModule } from './@shared/process-bar/process-bar.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotfoundComponent
-  ],
+  declarations: [AppComponent, NotfoundComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ProcessBarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
